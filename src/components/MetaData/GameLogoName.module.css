@@ -1,0 +1,22 @@
+.gameLogoName {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+
+.gameLogoName p {
+	font-style: italic;
+	margin-top: 0;
+	color: white;
+	font-size: 38px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+.gameLogoName img {
+	width: 200px;
+	height: 200px;
+	transition: rotate 0.3s;
+}
+.gameLogoName img:hover {
+	rotate: 18deg;
+}

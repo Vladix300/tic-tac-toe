@@ -1,0 +1,6 @@
+.Game {
+	display: flex;
+	width: 280px;
+	flex-wrap: wrap;
+	justify-content: center;
+}

@@ -1,0 +1,20 @@
+.startAgainBtn {
+	margin-top: 15px;
+	width: 270px;
+	height: 50px;
+	font-size: 18px;
+	padding: 6px;
+	border-radius: 10px;
+	background-color: #388de8;
+	color: white;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	transition: all 0.3s;
+}
+
+.startAgainBtn:hover {
+	cursor: pointer;
+	background-color: #2069b7;
+}
+.startAgainBtn:active {
+	transform: scale(0.9);
+}
