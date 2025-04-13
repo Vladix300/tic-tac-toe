@@ -1,19 +1,17 @@
 import styles from './Game.module.css'
 import { Information } from '../Information/Information'
-import { Field } from '../field/Field'
+import { Field } from '../Field/Field'
 import { StartAgainButton } from '../StartAgainButton/StartAgainButton'
 import { PLAYER_SIGN } from '../../assets/gameData'
+import { determineWinner } from '../../assets/gameData'
 import { useState } from 'react'
 
 const GameLayout = ({
-	field,
-	setGameField,
 	currentPlayer,
-	setCurrentPlayer,
 	isDraw,
-	setDraw,
 	isGameEnded,
-	setGameEnded,
+	field,
+	fieldStep,
 	resetGame,
 }) => {
 	return (
@@ -23,15 +21,7 @@ const GameLayout = ({
 				isDraw={isDraw}
 				isGameEnded={isGameEnded}
 			/>
-			<Field
-				field={field}
-				setGameField={setGameField}
-				currentPlayer={currentPlayer}
-				setCurrentPlayer={setCurrentPlayer}
-				setDraw={setDraw}
-				isGameEnded={isGameEnded}
-				setGameEnded={setGameEnded}
-			/>
+			<Field field={field} isGameEnded={isGameEnded} fieldStep={fieldStep} />
 			<StartAgainButton resetGame={resetGame} />
 		</>
 	)
@@ -52,17 +42,30 @@ export function Game() {
 		setField(PLAYER_FIELD)
 	}
 
+	function fieldStep(id) {
+		const newField = [...field]
+		newField[id] = currentPlayer
+		setField(newField)
+
+		if (determineWinner(newField)) {
+			setGameEnded(true)
+		} else if (!determineWinner(newField) && newField.every((f) => f !== '')) {
+			setDraw(true)
+		} else if (!determineWinner(newField)) {
+			setCurrentPlayer(
+				currentPlayer === PLAYER_SIGN[0] ? PLAYER_SIGN[1] : PLAYER_SIGN[0],
+			)
+		}
+	}
+
 	return (
 		<div className={styles.Game}>
 			<GameLayout
-				field={field}
-				setGameField={setField}
 				currentPlayer={currentPlayer}
-				setCurrentPlayer={setCurrentPlayer}
 				isDraw={isDraw}
-				setDraw={setDraw}
 				isGameEnded={isGameEnded}
-				setGameEnded={setGameEnded}
+				field={field}
+				fieldStep={fieldStep}
 				resetGame={resetGame}
 			/>
 		</div>

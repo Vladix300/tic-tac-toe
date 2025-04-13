@@ -29,10 +29,10 @@ export function determineWinner(field) {
 		})
 	})
 	if (winnerX || winnerO) {
-		console.log(`X : ${winnerX}, O: ${winnerO}`)
+		console.log(`X : ${winnerX}, O : ${winnerO}`)
 		return true
 	} else {
-		console.log(false)
+		console.log('no winner')
 		return false
 	}
 }

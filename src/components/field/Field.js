@@ -1,17 +1,7 @@
 import styles from './Field.module.css'
-import { PLAYER_SIGN } from '../../assets/gameData'
-import { determineWinner } from '../../assets/gameData'
 import PropTypes from 'prop-types'
 
-const FieldLayout = ({
-	field,
-	setGameField,
-	currentPlayer,
-	setCurrentPlayer,
-	setDraw,
-	isGameEnded,
-	setGameEnded,
-}) => {
+const FieldLayout = ({ field, isGameEnded, fieldStep }) => {
 	return (
 		<div className={styles.field}>
 			{field.map((cell, id) => {
@@ -21,24 +11,7 @@ const FieldLayout = ({
 						className={!field[id] && !isGameEnded ? styles.empty : ''}
 						disabled={isGameEnded || field[id]}
 						onClick={() => {
-							const newField = [...field]
-							newField[id] = currentPlayer
-							setGameField(newField)
-
-							if (determineWinner(newField)) {
-								setGameEnded(true)
-							} else if (
-								!determineWinner(newField) &&
-								newField.every((f) => f !== '')
-							) {
-								setDraw(true)
-							} else if (!determineWinner(newField)) {
-								setCurrentPlayer(
-									currentPlayer === PLAYER_SIGN[0]
-										? PLAYER_SIGN[1]
-										: PLAYER_SIGN[0],
-								)
-							}
+							fieldStep(id)
 						}}
 					>
 						{cell}
@@ -49,26 +22,8 @@ const FieldLayout = ({
 	)
 }
 
-export const Field = ({
-	field,
-	setGameField,
-	currentPlayer,
-	setCurrentPlayer,
-	setDraw,
-	isGameEnded,
-	setGameEnded,
-}) => {
-	return (
-		<FieldLayout
-			field={field}
-			setGameField={setGameField}
-			currentPlayer={currentPlayer}
-			setCurrentPlayer={setCurrentPlayer}
-			setDraw={setDraw}
-			isGameEnded={isGameEnded}
-			setGameEnded={setGameEnded}
-		/>
-	)
+export const Field = ({ field, isGameEnded, fieldStep }) => {
+	return <FieldLayout field={field} isGameEnded={isGameEnded} fieldStep={fieldStep} />
 }
 
 Field.propTypes = {
