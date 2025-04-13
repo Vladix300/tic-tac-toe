@@ -28,10 +28,6 @@ export const Field = ({ field, isGameEnded, fieldStep }) => {
 
 Field.propTypes = {
 	field: PropTypes.array,
-	currentPlayer: PropTypes.oneOf(['X', 'O']),
 	isGameEnded: PropTypes.bool,
-	setGameField: PropTypes.func,
-	setCurrentPlayer: PropTypes.func,
-	setDraw: PropTypes.func,
-	setGameEnded: PropTypes.func,
+	fieldStep: PropTypes.func,
 }

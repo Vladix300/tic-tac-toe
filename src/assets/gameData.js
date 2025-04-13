@@ -1,5 +1,3 @@
-export const PLAYER_SIGN = ['X', 'O']
-
 export const WIN_PATTERNS = [
 	[0, 1, 2], // Варианты побед по горизонтали
 	[3, 4, 5],

@@ -2,7 +2,6 @@ import styles from './Game.module.css'
 import { Information } from '../Information/Information'
 import { Field } from '../Field/Field'
 import { StartAgainButton } from '../StartAgainButton/StartAgainButton'
-import { PLAYER_SIGN } from '../../assets/gameData'
 import { determineWinner } from '../../assets/gameData'
 import { useState } from 'react'
 
@@ -30,7 +29,7 @@ const GameLayout = ({
 export function Game() {
 	const PLAYER_FIELD = ['', '', '', '', '', '', '', '', '']
 
-	const [currentPlayer, setCurrentPlayer] = useState(PLAYER_SIGN[0])
+	const [currentPlayer, setCurrentPlayer] = useState('X')
 	const [isGameEnded, setGameEnded] = useState(false)
 	const [isDraw, setDraw] = useState(false)
 	const [field, setField] = useState(PLAYER_FIELD)
@@ -52,9 +51,7 @@ export function Game() {
 		} else if (!determineWinner(newField) && newField.every((f) => f !== '')) {
 			setDraw(true)
 		} else if (!determineWinner(newField)) {
-			setCurrentPlayer(
-				currentPlayer === PLAYER_SIGN[0] ? PLAYER_SIGN[1] : PLAYER_SIGN[0],
-			)
+			setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X')
 		}
 	}
 
