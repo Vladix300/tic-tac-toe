@@ -35,7 +35,7 @@ export function Game() {
 	const [field, setField] = useState(PLAYER_FIELD)
 
 	function resetGame() {
-		setCurrentPlayer(PLAYER_SIGN[0])
+		setCurrentPlayer('X')
 		setGameEnded(false)
 		setDraw(false)
 		setField(PLAYER_FIELD)
